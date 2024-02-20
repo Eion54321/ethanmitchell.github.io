@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- somthing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js" integrity="sha512-uaz5GpnQoE6t5echKlX8P52czvsIGgLPcvlzfvRubLZ1Hp8JemUDnbUiAahbVtPb+jUVrNETuXvAhDDF/N3M4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Includes the p5.collide2D addon library -->
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            Display: flex;
+            flex-direction: column;
+            margin: 0%;
+            padding: 0%;
+            overflow: hidden;
+            background-image: url("homepage.jpg");
+            border-radius: 0px, 0px, 0px, 0px;
+        }
+
+/* Types writer function */
+.container{
+    display: inline-block;
+    font-family: "arial";
+    font-size: 24px;
+    background-color: white;
+    width: 95%;
+    position: absolute;
+    left: 15px;
+    top: 5%;
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+.typed {
+    color: black;
+    overflow: hidden;
+    white-space: wrap;
+    border-right: 2px solid;
+    width: 0;
+    animation: typing 1.5s steps(30, end) forwards, blinking 1s infinite;
+    margin-left: 4%;
+
+}
+  
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blinking {
+    0% {border-right-color: transparent}
+    50% {border-right-color: black}
+    100% {border-right-color: transparent}
+}
+
+    </style>
+
+</head>
+<body>
+
+<!-- types writer function -->
+<div class="container">
+    <p class="typed">
+        Hello and Welcome to my game called Lairs of the Beast!  We will now show you how to play this game. We will now play.
+    </p>
+</div>
+
+
+
+    <script>
+        let w = window.innerWidth
+        let h = window.innerHeight
+        let by = 0
+        let bx = w/2
+        let speed = 2
+        let hit = false
+        let hit2 = false
+
+        function setup() {
+            createCanvas(w,h)
+            player = new jumper()
+        }
+
+
+        //For gravity
+        function jumper() {
+            //velocity of ball
+            this.velocity = 0
+            //How fast ball will fall down
+            this.gravity = 1
+            //How much will go up when spacebar
+            this.lift = -12
+
+            this.show = function() {
+                //what ball will look like
+                fill('red')
+                circle(bx, by, 50)
+            }
+
+            //Function to loop on repeat within the draw function
+            this.update = function () {
+                //Add current velocity to current gravity
+                this.velocity += this.gravity
+
+                //make the ball stop at the bottom of the screen
+                if (by >= h - 25) {
+                    this.velocity = 0
+                }
+                //What direction am I travelling
+                by += this.velocity
+                //Resistance to falling
+                this.velocity *= 0.9
+
+                if(by >= h) {
+                    this.velocity = 0
+                }
+
+                //makes the circle move when inside the box using arrow keys
+                if (bx >= 0) {
+                    if (keyIsDown(LEFT_ARROW)) {
+                        bx -= speed;
+                    }
+                }
+
+                if (bx <= w) {
+                    if (keyIsDown(RIGHT_ARROW)) {
+                        bx += speed;
+                    }
+                }
+
+                if (by >= 0){
+                    if (keyIsDown(UP_ARROW)) {
+                        by -= 10;
+                    }
+                }
+
+                if (by >= window.innerHeight - 25){
+                    by - window.innerHeight - 25
+                }
+            }
+        }
+
+        
+        
+
+
+        function draw() {
+            clear()
+            player.show()
+            player.update()
+        }
+    </script>
+</body>
+</html>
