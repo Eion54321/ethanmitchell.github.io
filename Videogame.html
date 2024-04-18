@@ -9,6 +9,7 @@
     <!-- Includes the p5.collide2D addon library -->
     <script defer src="https://unpkg.com/p5.collide2d"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
@@ -21,17 +22,28 @@
             flex-direction: column;
             margin: 0%;
             padding: 0%;
+            border-image-repeat: no-repeat;
             overflow: hidden;
-            background-image: url("homepage.jpg");
+            background-image: url("homepage.png");
             border-radius: 0px, 0px, 0px, 0px;
     }
-
 /* HOME PAGE */
     /* Title */
-        .title1 {
+        .billboard {
+            z-index: 1;
             position: absolute;
             left: 50%;
-            top: 9%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+            width: 75%;
+            height: 80%;
+            border-radius: 20px;
+        }
+        .title1 {
+            z-index: 2;
+            position: absolute;
+            left: 50%;
+            top: 2%;
             transform: translate(-50%, -50%);
             width: 50%;
             height: 15%;
@@ -43,12 +55,13 @@
             width: 100%;
             padding-left: 10px;
             font-size: 90px;
-            color: b;
+            color: white;
             text-align: center;
         }
 
     /* Buttons on the Home-Page */
         #button {
+            z-index: 4;
             position: absolute;
             left: 50%;
             width: 200px;
@@ -67,36 +80,46 @@
         .game {
             top: 50%;
             font-size: 40px;
+            color: white;
+            -webkit-text-stroke: 1.5px black;
         }
 
         .tutorial {
             top: 60%;
             font-size: 40px;
+            color: white;
+            -webkit-text-stroke: 1.5px black;
         }
 
-        .setting{
-            top: 70%;
-            font-size: 40px;
-        }
 
 
         /* Man walking on the bottum of home page. */
         @keyframes moveintro {
             100% {
-            transform: translateX(110vw);
+                transform: translateX(200vw);
+                z-index: 0;
             }
         }
         .manintro { 
             left: -80px;
-            top: 80%;
+            top: 25%;
             position: absolute;
             height: 85px;
             width: 85px;
-            animation-delay: 2s;
+            animation-delay: 5s;
             animation-name: moveintro;
-            animation-duration: 20s; 
+            animation-duration: 10s; 
             animation-iteration-count: infinite;
             animation-timing-function: linear;
+
+        }
+
+        .speaker {
+            top: 40%;
+            left: -3%;
+            height: 50%;
+            width: 25%;
+            position: absolute;
         }
     </style>
 </head>
@@ -108,14 +131,17 @@
     <!-- button for tutorial -->
     <a href="tutorial.html"><button class="tutorial" onclick="tutorialbutton()" id="button">Tutorial</button></a>
     <a href="game.html"><button class="game" onclick="gamebutton()" id="button">Start</button></a>
-    <a href="setting.html"><button class="setting" onclick="settingbutton()" id="button">Settings</button></a>
-    
+
+<!--Title  -->
     <div class="title1">
-        <p class="title2">Lair of the Beast</p>
+        <p class="title2">Cosmic Conflict: Alien Siege</p>
     </div>
+
+    <img class="billboard" src="Floatingbillboard.png">
     <!-- Man walking -->
-    <img class="manintro" src="character.png">
-    <div class="column"></div>
+    <img class="manintro" src="ship1.png">
+    <!-- speaker -->
+    <img class="speaker" src="nerd.gif">
 
     <script>
         //Home page
@@ -130,12 +156,6 @@
         }
 
         function draw() {
-        }
-
-
-        // functions for HOME-PAGE buttons
-        function tutorialbutton() {
-
         }
     </script>
 </body>
