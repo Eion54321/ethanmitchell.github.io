@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- somthing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js" integrity="sha512-uaz5GpnQoE6t5echKlX8P52czvsIGgLPcvlzfvRubLZ1Hp8JemUDnbUiAahbVtPb+jUVrNETuXvAhDDF/N3M4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Includes the p5.collide2D addon library -->
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            Display: flex;
+            flex-direction: column;
+            margin: 0%;
+            padding: 0%;
+            border-image-repeat: no-repeat;
+            overflow: hidden;
+            background-image: url("homepage.png");
+            border-radius: 0px, 0px, 0px, 0px;
+        }
+
+        /* Text Box */
+        div {
+            position: absolute;
+            top: 90%;
+            width: 100%;
+            height: 10%;
+        }
+
+        p {
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    </div>
+
+
+
+
+
+    <script>
+        let w = window.innerWidth
+        let h = window.innerHeight
+        bx = 0
+        by = h/2
+        
+        let speed = 5
+        let pressed = 0;
+
+
+
+// 
+
+
+        //images
+        function preload() {
+            ship = loadImage('ship1.png')
+            fire = loadImage('fireball.png')
+            enemy1 = loadImage('simple.png')
+        }
+
+
+// 
+
+
+        function setup() {
+            createCanvas(w,h)
+
+
+    // 
+
+
+            // counter so that you don't keep stacking the buttons
+            let click = 0;
+             // Create setting button
+            let button = createButton('SETTINGS');
+            button.position(1450,830);
+
+            // recall function when setting button clicked
+            button.mouseClicked(settings);
+            button.style("height: 7%")
+            button.style("width: 10%")
+            button.style("border-radius: 50px;")
+            button.style("border-style: solid;")
+            button.style("font-family: 'Pixelify Sans', sans-serif;")
+            button.style("font-size: 200%")
+            button.style("transform: translate(-50%, -50%);")
+            button.style("border-color: black;")
+            button.style("background-color: #FF8700;")
+
+            function settings() {
+                // if it is 0 then you are able to click but if not you remove the buttons
+                if (click == 0 ) {
+                    click += 1;
+                    
+                    // Back button
+                    let button1 = createButton('Back');
+                    button1.position(0,300);
+                    button1.style("height: 8%")
+                    button1.style("left: 50%")
+                    button1.style("top: 45%")
+                    button1.style("width: 15%")
+                    button1.style("border-radius: 50px;")
+                    button1.style("border-style: solid;")
+                    button1.style("font-family: 'Pixelify Sans', sans-serif;")
+                    button1.style("font-size: 250%")
+                    button1.style("transform: translate(-50%, -50%);")
+                    button1.style("border-color: black;")
+                    button1.style("background-color: #FF8700;")
+
+                    // recall function when back button clicked
+                    button1.mouseClicked(back1);
+
+                    function back1() {
+                        click = 0;
+                        button1.remove();
+                        button2.remove();
+                    }
+
+                    // Main Page button
+                    let button2 = createButton('Main Page');
+                    button2.position(0, 375);
+                    button2.mouseClicked(mainPage);
+                    button2.style("height: 8%")
+                    button2.style("width: 15%")
+                    button2.style("left: 50%")
+                    button2.style("top: 55%")
+                    button2.style("border-radius: 50px;")
+                    button2.style("border-style: solid;")
+                    button2.style("font-family: 'Pixelify Sans', sans-serif;")
+                    button2.style("font-size: 250%")
+                    button2.style("transform: translate(-50%, -50%);")
+                    button2.style("border-color: black;")
+                    button2.style("background-color: #FF8700;")
+                    
+
+                    function mainPage() {
+                        location.href="game.html"
+                    }
+
+                    mainPage.style
+                }
+            }
+
+
+
+    //
+
+
+            // create text box for information
+            let cdiv = createDiv();
+            cdiv.position(0,0)
+            cdiv.style('background-color: white')
+            cdiv.style('position: absolute')
+            cdiv.style('height: 15%')
+
+            // 
+
+            let next1 = createButton('Start');
+            next1.mouseClicked(nextbutton);
+            next1.position(1375, 80)
+            next1.style("height: 5%")
+            next1.style("width: 10%")
+            next1.style("border-radius: 50px;")
+            next1.style("border-style: solid;")
+            next1.style("font-family: 'Pixelify Sans', sans-serif;")
+            next1.style("font-size: 175%")
+            next1.style("border-color: black;")
+            next1.style("background-color: #FF8700;")
+            next1.style("z-index: 4")
+
+            function nextbutton() {
+                pressed += 1;
+                console.log(pressed)
+
+                if (pressed == 1) {
+                    let p1 = createP('Nice job rescuing the prisoners and destroying the aliens base but we now have a new mission for you. We have intel that they are building a lab to build new, powerfull war robot that must be taken down. ')
+                    p1.id('p1')
+                    p1.position(20, -10)
+                    p1.style("font-family: 'Pixelify Sans', sans-serif;")
+                    p1.style("font-size: 25px;")
+                    next1.id('next1')
+                    document.getElementById('next1').innerHTML = 'Next'
+                }
+
+                if (pressed == 2) {
+                    document.getElementById('p1').innerHTML = 'You will find these labs in the biggest planets in our solar system, the Saturn and Jupiter which is in Sector-4. Once you reach Sector-3 you must go into the center of one of these planets, steal all their data, and destroy these bases.'
+                }
+
+                if (pressed == 3) {
+                    document.getElementById('p1').innerHTML = 'God Speed soldier! We wish you luck!'
+                    document.getElementById('next1').innerHTML = 'End'
+                }
+                if (pressed == 4) {
+                    cdiv.remove();
+                    next1.remove();
+                    p1.remove();
+                }
+            }
+        }
+
+
+
+
+
+
+
+        function draw() {
+            clear()
+
+            //moves the ship when key is pressed only moves when it is inside the perimeters(bx >= 0)...
+            if (bx >= - 70) {
+                if (keyIsDown(LEFT_ARROW)) {
+                    bx -= speed;
+                }
+            }
+            if (bx <= w/2 - 150) {
+                if (keyIsDown(RIGHT_ARROW)) {
+                    bx += speed;
+                }
+            }
+            // moves the ship when key is pressed.
+            if (by >= -10) {
+                if (keyIsDown(UP_ARROW)) {
+                    by -= speed;
+                }
+            }
+            if (by <= h/2 + 250) {
+                if (keyIsDown(DOWN_ARROW)) {
+                    by += speed;
+                }
+            }
+            
+            
+
+            rect(image(ship, bx, by, 250, 150))
+            rect(image(enemy1, w/1.5, h/2, 100, 100))
+            rect(image(enemy1, w/1.5, h/2-150, 100, 100))
+        }
+
+    </script>
+</body>
+</html>

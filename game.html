@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- somthing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js" integrity="sha512-uaz5GpnQoE6t5echKlX8P52czvsIGgLPcvlzfvRubLZ1Hp8JemUDnbUiAahbVtPb+jUVrNETuXvAhDDF/N3M4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Includes the p5.collide2D addon library -->
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            Display: flex;
+            flex-direction: column;
+            margin: 0%;
+            padding: 0%;
+            border-image-repeat: no-repeat;
+            overflow: hidden;
+            background-image: url("homepage.png");
+            border-radius: 0px, 0px, 0px, 0px;
+        }
+
+        /* Text Box */
+        div {
+            position: absolute;
+            top: 90%;
+            width: 100%;
+            height: 10%;
+        }
+
+        p {
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+
+
+    /*animation scene for ship1 running and then chasing the aliens*/
+
+
+        /* frame 1 */
+
+            /* plane */
+
+        @keyframes runner {
+            50% {
+                transform: translateX(150vw);
+                z-index: 0;
+                /* animation-duration: 5s; */
+                
+            }
+            100% {
+                transform: translateX(300vw);
+                z-index: 0;
+            }
+        }
+        .f1run {
+            left: -25%;
+            top: 70%;
+            position: absolute;
+            height: 15%;
+            width: 10%;
+            animation-delay: 3s;
+            animation-name: runner;
+            animation-iteration-count: 10;
+            animation-duration: 15.25s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+            /* alien */
+
+        @keyframes chaser {
+            50% {
+                transform: translateX(150vw);
+                z-index: 0;
+            }
+            100% {
+                transform: translateX(300vw)
+            }
+        }
+        .f1chase {
+            left: -10%;
+            top: 70%;
+            position: absolute;
+            height: 15%;
+            width: 10%;
+            animation-delay: 3s;
+            animation-name: runner;
+            animation-duration: 15.25s; 
+            animation-iteration-count: 10;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+
+        /* frame 2 */
+
+
+            /* plane */
+
+        @keyframes f2runner {
+            50% {
+                transform: translateX(-125vw);
+                z-index: 0;
+            }
+            100% {
+                transform: translateX(-300vw);
+                z-index: 0;
+            }
+        }
+        .f2run {
+            right: -10%;
+            top: 70%;
+            position: absolute;
+            height: 15%;
+            width: 10%;
+            animation-delay: 10.75s;
+            animation-name: f2runner;
+            animation-duration: 14.75s; 
+            animation-iteration-count: 10;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+            /* alien */
+
+        @keyframes f2chaser {
+            50% {
+                transform: translateX(-125vw);
+                z-index: 0;
+            }
+            100% {
+                transform: translateX(-300vw);
+                z-index: 0;
+            }
+        }
+        .f2chase {
+            right: -10%;
+            top: 65%;
+            position: absolute;
+            height: 15%;
+            width: 10%;
+            animation-delay: 11.5s;
+            animation-name: f2chaser;
+            animation-duration: 14.75s; 
+            animation-iteration-count: 10;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes f2chaser2 {
+            50% {
+                transform: translateX(-125vw);
+                z-index: 0;
+            }
+            100% {
+                transform: translateX(-300vw);
+                z-index: 0;
+            }
+        }
+        .f2chase2 {
+            right: -10%;
+            top: 75%;
+            position: absolute;
+            height: 15%;
+            width: 10%;
+            animation-delay: 11.5s;
+            animation-name: f2chaser2;
+            animation-duration: 14.75s; 
+            animation-iteration-count: 10;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes f2boss {
+            50% {
+                transform: translateX(-125vw);
+                z-index: 0;
+            }
+            100% {
+                transform: translateX(-300vw);
+                z-index: 0;
+            }
+        }
+        .boss {
+            right: -25%;
+            top: 55%;
+            position: absolute;
+            height: 50%;
+            width: 25%;
+            animation-delay: 11.75s;
+            animation-name: f2boss;
+            animation-duration: 14.75s; 
+            animation-iteration-count: 10;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+    </style>
+</head>
+<body>
+<!-- frame 1 where the ship is chasing the aliens -->
+
+    <img class="f1run" src="ship1.png">
+    <img class="f1chase" src="simple.png">
+
+<!-- frame 2 where swarm of aliens chasing ship -->
+    <img class="f2run" src="ship1left.png">
+    <img class="f2chase" src="simple.png">
+    <img class="f2chase2" src="decent.png">
+    <img class="boss" src="simple.png">
+
+
+
+
+
+    <script>
+        let w = window.innerWidth
+        let h = window.innerHeight
+        bx = 0
+        by = h/2
+
+
+
+// 
+
+
+        //images
+        function preload() {
+            ship = loadImage('ship1orginal.png')
+            ship1 = loadImage('ship1orginal.png')
+            alien1 = loadImage('simple.png')
+            alien2 = loadImage('decent.png')
+            buddy1 = loadImage('buddy1.png')
+            buddy2 = loadImage('buddy2.png')
+            op = loadImage('opship.png')
+        }
+
+
+// 
+
+
+        function setup() {
+            createCanvas(w,h)
+
+
+            // levels
+            
+
+            // lvl1 image
+            image(ship, 80, 25, 200, 200)
+            // lvl2 image
+            image(ship1, 650, 25, 200, 200)
+            image(buddy1, 780, 145, 50, 50)
+            image(buddy2, 665, 145, 50, 50)
+            // lvl3 image
+            image(alien2, 360, 25, 200, 200)
+            // lvl4 image
+            image(alien1, 925, 25, 200, 200)
+            // lvl5 image
+            image(op, 1200, 25, 200, 200)
+
+
+            // button for lvls
+            let lvl1 = createButton('Play');
+            lvl1.position(100, 10)
+            lvl1.mouseClicked(firstlvl)
+            lvl1.style("height: 5%")
+            lvl1.style("width: 10%")
+            lvl1.style("border-radius: 50px;")
+            lvl1.style("border-style: solid;")
+            lvl1.style("font-family: 'Pixelify Sans', sans-serif;")
+            lvl1.style("font-size: 175%")
+            lvl1.style("border-color: black;")
+            lvl1.style("background-color: #FF8700;")
+            lvl1.style("z-index: 4")
+
+            let lvl2 = createButton('Play')
+            lvl2.position(380, 10)
+            lvl2.mouseClicked(secondlvl)
+            lvl2.style("height: 5%")
+            lvl2.style("width: 10%")
+            lvl2.style("border-radius: 50px;")
+            lvl2.style("border-style: solid;")
+            lvl2.style("font-family: 'Pixelify Sans', sans-serif;")
+            lvl2.style("font-size: 175%")
+            lvl2.style("border-color: black;")
+            lvl2.style("background-color: #FF8700;")
+            lvl2.style("z-index: 4")
+
+            let lvl3 = createButton('Play')
+            lvl3.position(670, 10)
+            lvl3.mouseClicked(thirdlvl)
+            lvl3.style("height: 5%")
+            lvl3.style("width: 10%")
+            lvl3.style("border-radius: 50px;")
+            lvl3.style("border-style: solid;")
+            lvl3.style("font-family: 'Pixelify Sans', sans-serif;")
+            lvl3.style("font-size: 175%")
+            lvl3.style("border-color: black;")
+            lvl3.style("background-color: #FF8700;")
+            lvl3.style("z-index: 4")
+
+            let lvl4 = createButton('Play')
+            lvl4.position(940, 10)
+            lvl4.mouseClicked(fourthlvl)
+            lvl4.style("height: 5%")
+            lvl4.style("width: 10%")
+            lvl4.style("border-radius: 50px;")
+            lvl4.style("border-style: solid;")
+            lvl4.style("font-family: 'Pixelify Sans', sans-serif;")
+            lvl4.style("font-size: 175%")
+            lvl4.style("border-color: black;")
+            lvl4.style("background-color: #FF8700;")
+            lvl4.style("z-index: 4")
+
+            let lvl5 = createButton('Play')
+            lvl5.position(1225, 10)
+            lvl5.mouseClicked(fifthlvl)
+            lvl5.style("height: 5%")
+            lvl5.style("width: 10%")
+            lvl5.style("border-radius: 50px;")
+            lvl5.style("border-style: solid;")
+            lvl5.style("font-family: 'Pixelify Sans', sans-serif;")
+            lvl5.style("font-size: 175%")
+            lvl5.style("border-color: black;")
+            lvl5.style("background-color: #FF8700;")
+            lvl5.style("z-index: 4")
+
+
+            // when button pressed go to desired lvl
+            function firstlvl() {
+                location.href="lvl1.html"
+            }
+            function secondlvl() {
+                location.href="lvl2.html"
+            }
+            function thirdlvl() {
+                location.href="lvl3.html"
+            }
+            function fourthlvl() {
+                location.href="lvl4.html"
+            }
+            function fifthlvl() {
+                location.href="lvl5.html"
+            }
+        }
+
+
+
+
+
+
+
+        function draw() {
+
+        }
+
+    </script>
+</body>
+</html>
