@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- somthing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js" integrity="sha512-uaz5GpnQoE6t5echKlX8P52czvsIGgLPcvlzfvRubLZ1Hp8JemUDnbUiAahbVtPb+jUVrNETuXvAhDDF/N3M4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Includes the p5.collide2D addon library -->
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            Display: flex;
+            flex-direction: column;
+            margin: 0%;
+            padding: 0%;
+            border-image-repeat: no-repeat;
+            overflow: hidden;
+            background-image: url("homepage.png");
+            border-radius: 0px, 0px, 0px, 0px;
+        }
+
+        /* Text Box */
+        div {
+            position: absolute;
+            top: 90%;
+            width: 100%;
+            height: 10%;
+        }
+
+        p {
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    </div>
+
+
+
+
+
+    <script>
+        let w = window.innerWidth
+        let h = window.innerHeight
+        bx = 0
+        by = h/2
+        
+        let speed = 5
+        let pressed = 0;
+
+        // let bx = x + 250;
+        // let by = y + 150/2;
+
+        let ship
+        let enemy 
+        let fireball
+
+
+        let speedbullet = 20
+        let en1x = w - 200
+        let en1y = h/2
+
+        let en2x = w - 200
+        let en2y = h/2-150
+
+        let en3x = w - 200
+        let en3y = h/2+150
+
+        let en4x = w - 200
+        let en4y = h/2-290
+
+
+        
+        // let speedFactor = 10
+        // let interval = 3 * 1000
+        // let lastGenerated = 0
+        // let time = 0
+        // let start = 0
+
+
+        
+
+// 
+
+
+        //images
+        function preload() {
+            ship = loadImage('ship1.png')
+            fireball = loadImage('fireball.png')
+            enemy1 = loadImage('simple.png')
+        }
+
+
+// 
+
+
+        function setup() {
+            createCanvas(w,h)
+
+
+    // 
+
+
+            // counter so that you don't keep stacking the buttons
+            let click = 0;
+             // Create setting button
+            let button = createButton('SETTINGS');
+            button.position(1450,830);
+
+            // recall function when setting button clicked
+            button.mouseClicked(settings);
+            button.style("height: 7%")
+            button.style("width: 10%")
+            button.style("border-radius: 50px;")
+            button.style("border-style: solid;")
+            button.style("font-family: 'Pixelify Sans', sans-serif;")
+            button.style("font-size: 200%")
+            button.style("transform: translate(-50%, -50%);")
+            button.style("border-color: black;")
+            button.style("background-color: #FF8700;")
+
+            function settings() {
+                // if it is 0 then you are able to click but if not you remove the buttons
+                if (click == 0 ) {
+                    click += 1;
+                    
+                    // Back button
+                    let button1 = createButton('Back');
+                    button1.position(0,375);
+                    button1.style("height: 8%")
+                    button1.style("left: 50%")
+                    button1.style("top: 55%")
+                    button1.style("width: 15%")
+                    button1.style("border-radius: 50px;")
+                    button1.style("border-style: solid;")
+                    button1.style("font-family: 'Pixelify Sans', sans-serif;")
+                    button1.style("font-size: 250%")
+                    button1.style("transform: translate(-50%, -50%);")
+                    button1.style("border-color: black;")
+                    button1.style("background-color: #FF8700;")
+
+                    // recall function when back button clicked
+                    button1.mouseClicked(back1);
+
+                    function back1() {
+                        click = 0;
+                        button1.remove();
+                        button2.remove();
+                    }
+
+                    // Main Page button
+                    let button2 = createButton('Main Page');
+                    button2.position(0, 300);
+                    button2.mouseClicked(mainPage);
+                    button2.style("height: 8%")
+                    button2.style("width: 15%")
+                    button2.style("left: 50%")
+                    button2.style("top: 45%")
+                    button2.style("border-radius: 50px;")
+                    button2.style("border-style: solid;")
+                    button2.style("font-family: 'Pixelify Sans', sans-serif;")
+                    button2.style("font-size: 250%")
+                    button2.style("transform: translate(-50%, -50%);")
+                    button2.style("border-color: black;")
+                    button2.style("background-color: #FF8700;")
+                    
+
+                    function mainPage() {
+                        location.href="game.html"
+                    }
+
+                    mainPage.style
+                }
+            }
+
+
+
+    //
+
+
+            // create text box for information
+            let cdiv = createDiv();
+            cdiv.position(0,0)
+            cdiv.style('background-color: white')
+            cdiv.style('position: absolute')
+            cdiv.style('height: 15%')
+
+            // 
+
+            let next1 = createButton('Start');
+            next1.mouseClicked(nextbutton);
+            next1.position(1375, 80)
+            next1.style("height: 5%")
+            next1.style("width: 10%")
+            next1.style("border-radius: 50px;")
+            next1.style("border-style: solid;")
+            next1.style("font-family: 'Pixelify Sans', sans-serif;")
+            next1.style("font-size: 175%")
+            next1.style("border-color: black;")
+            next1.style("background-color: #FF8700;")
+            next1.style("z-index: 4")
+
+            function nextbutton() {
+                pressed += 1;
+                console.log(pressed)
+
+                if (pressed == 1) {
+                    let p1 = createP('HELP!!! You have arrived to Cosmic Conflict: Alien Seige and we need your help. In this game you are a pro space-pilot flying and destroying alien spaceships to save your home planet, Earth. ')
+                    p1.id('p1')
+                    p1.position(20, -10)
+                    p1.style("font-family: 'Pixelify Sans', sans-serif;")
+                    p1.style("font-size: 25px;")
+                    next1.id('next1')
+                    document.getElementById('next1').innerHTML = 'Next'
+                }
+
+                if (pressed == 2) {
+                    document.getElementById('p1').innerHTML = 'Lets show you the controls to fly this spaceship. You can press the up arrow to fly high, down arrow to go down, left arrow to go backwards, right arrow to go forward.'
+                }
+
+                if (pressed == 3) {
+                    document.getElementById('p1').innerHTML = 'There are some enemies in front of you! Practice the controls until you think you are ready and then you can press the settings button to exit to the main page or start playing the levels. This game is all about luck. You must  Exiting the level will also looses progress on the level you are in. Hope you have fun!'
+                    
+                }
+                if (pressed == 4) {
+                    document.getElementById('p1').innerHTML = 'Before clicking End button on the text box move your character to the spot that you think will survive. You can choose any level you want on the menu page but it get harder the higher you go.'
+                    next1.remove()
+                    bullet()
+                }
+            }
+
+        }
+
+        // function keyTypes() {
+        //     if (key == 'b') {
+        //         start = 1
+        //         console.log('works')
+        //     }
+        // }
+
+
+
+        // function fruitConstructor(part) {
+        //     this.drop = function(speedFactor) {
+        //         this.posistionX -= 1 * speedFactor
+        //     }
+        //     this.show = function() {
+        //         if (this.positionY ) {
+        //             image(fireball, this.positionX, this.positionY, 50, 50)
+        //         }
+        //     }
+
+        //     if (start == 1) {
+        //         this.positionY = random(0 + 200, Math.floow(w/2) - 200)
+        //         this.playerGoal = part
+        //     }
+
+        //     this.positionX = 0 - 0
+
+        //     this.detectHit = function (posistionX, positionY, sizeX, sizeY) {
+        //         if (collideRectRect(positionX, positionY, 50, 50, this.positionX, this.positionY, 50, 50))
+        //     }
+        // }
+
+
+
+        function draw() {
+            clear()
+
+            //moves the ship when key is pressed only moves when it is inside the perimeters(bx >= 0)...
+            if (bx >= - 70) {
+                if (keyIsDown(LEFT_ARROW)) {
+                    bx -= speed;
+                }
+            }
+            if (bx <= w/2 - 150) {
+                if (keyIsDown(RIGHT_ARROW)) {
+                    bx += speed;
+                }
+            }
+            // moves the ship when key is pressed.
+            if (by >= +100) {
+                if (keyIsDown(UP_ARROW)) {
+                    by -= speed;
+                }
+            }
+            if (by <= h/2 + 250) {
+                if (keyIsDown(DOWN_ARROW)) {
+                    by += speed;
+                }
+            }
+
+
+            // bullet();
+            let hit1 = collideRectRect(en1x, en1y, 250, 250, bx, by, 250, 150);
+            if (hit1 === true) {
+                en1x = w - 200
+                en2x = w - 200
+                en3x = w - 200
+                en4x = w - 200
+                window.alert('You died!')
+                location.href = "tutorial.html"
+            }
+            let hit2 = collideRectRect(en2x, en2y, 250, 250, bx, by, 250, 150);
+            if  (hit2 === true) {
+                en1x = w - 200
+                en2x = w - 200
+                en3x = w - 200
+                en4x = w - 200
+                window.alert('You died!')
+                location.href = "tutorial.html"
+                
+            }
+            let hit3 = collideRectRect(en3x, en3y, 250, 250, bx, by, 250, 150);
+            if  (hit3 === true) {
+                en1x = w - 200
+                en2x = w - 200
+                en3x = w - 200
+                en4x = w - 200
+                window.alert('You died!')
+                location.href = "tutorial.html"
+                
+            }
+            let hit4 = collideRectRect(en4x, en4y, 250, 250, bx, by, 250, 150);
+            if  (hit3 === true) {
+                en1x = w - 200
+                en2x = w - 200
+                en3x = w - 200
+                en4x = w - 200
+                window.alert('You died!')
+                location.href = "tutorial.html"
+                
+            }
+            
+
+
+            // if (keyIsDown(UP_ARROW)) {
+            //     en1y -= speed;
+            // }
+            // if (keyIsDown(DOWN_ARROW)) {
+            //     en1y += speed;
+            // }
+            // if (keyIsDown(RIGHT_ARROW)) {
+            //     en1x += speed;
+            // }
+            // if (keyIsDown(LEFT_ARROW)) {
+            //     en1x -= speed;
+            // }
+            
+
+            rect(image(ship, bx, by, 250, 150))
+            rect(image(enemy1, en1x, en1y, 250, 250))
+            rect(image(enemy1, en2x, en2y, 250, 250))
+            rect(image(enemy1, en3x, en3y, 250, 250))
+            rect(image(enemy1, en4x, en4y, 250, 250))
+        }
+
+        let random = Math.floor((Math.random() * 4) + 1)
+        console.log(random)
+        let amount = 0;
+        function bullet() {
+            if (random == 1) {
+                while (en1x > 0) {
+                    console.log('#1')
+                    en1x -= speedbullet;
+                    
+                    if (en1x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+
+            if (random == 2) {
+                while (en2x > 0) {
+                    console.log('#1')
+                    en2x -= speedbullet;
+                    
+                    if (en2x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+        
+
+            if (random == 3) {
+                while (en3x > 0) {
+                    console.log('#1')
+                    en3x -= speedbullet;
+                    
+                    if (en3x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+        
+
+            if (random == 4) {
+                while (en4x > 0) {
+                    console.log('#1')
+                    en4x -= speedbullet;
+                    
+                    if (en4x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+            
+            
+
+            amount++
+            
+            
+        }  
+
+
+
+    </script>
+</body>
+</html>
