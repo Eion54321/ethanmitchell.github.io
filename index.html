@@ -17,21 +17,19 @@
 
 
     <style>
-         body{
+        body{
             margin: 0%;
             padding: 0%;
             border-image-repeat: no-repeat;
-            overflow: hidden;
+            overflow: hidden; 
             background-image: url(homepage.png);
-            background-size: cover;
             background-repeat: no-repeat;
-    }
+        }
 /* HOME PAGE */
     #startscreen {
         background-image: url(homepage.png);
         width: 100%;
         height: 2000px;
-        z-index: 1;
     }
 
         .billboard {
@@ -147,14 +145,13 @@
             background-image: url(homepage.png);
             width: 100%;
             height: 1000px;
-            z-index: 1;
+            position: absolute;
         }
         .cdiv {
             /* position: absolute; */
             top: 90%;
             width: 100%;
             height: 10%;
-            z-index: 3;
             background-color: white;
         }
         p   {
@@ -162,7 +159,6 @@
         }
         rect {
             position: abolute;
-            z-index: 3;
         }
     </style>
 </head>
@@ -173,7 +169,7 @@
 <!-- HOME PAGE -->
     <div id="startscreen">
         <!-- button for tutorial -->
-        <button class="game" onclick="scrollToSection()">Start</button>
+        <a href="tutorial.html" ><button class="game" onclick="scrollToSection()">Start</button></a>
 
     <!--Title  -->
         <div class="title1">
@@ -195,240 +191,23 @@
 
 <!--Link to audio file-->
 
-
-    <script> 
-        let w = window.innerWidth
-        let h = window.innerHeight
-        bx = 0
-        by = 
-        
-        // Projectile 
-        px = 0
-        py = h/2
-
-        
-        let speed = 5
-        let pressed = 0;
-        
-        let click = 0;
-        let sound
-
-
-
-
-         //images
-         function preload() {
-            ship = loadImage('ship1.png')
-            fire = loadImage('fireball.png')
-            enemy1 = loadImage('simple.png')
-            sound = loadSound('sound.mp3')
-        }
-
-
+    <script>
 
         // scrolling function when pressing start
-        function scrollToSection() {
+        // function scrollToSection() {
 
-            sound.play()
-            // scroll to the div you want
-            var targetSection = document.getElementById("sectionToScrollTo");
-            // calculate the target position of the section
-            var targetPosition = targetSection.offsetTop;
+        //     sound.play()
+        //     // scroll to the div you want
+        //     var targetSection = document.getElementById("sectionToScrollTo");
+        //     // calculate the target position of the section
+        //     var targetPosition = targetSection.offsetTop;
 
-            // animate the scroll
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            })
-        }
-
-
-
-// 
-
-
-        function setup() {
-            createCanvas(w,h)
-        
-
-    // 
-
-             // Create setting button
-            let button = createButton('SETTINGS');
-            button.position(1450,2810);
-            
-
-            // recall function when setting button clicked
-            button.mouseClicked(settings);
-            button.style("height: 7%")
-            button.style("width: 10%")
-            button.style("border-radius: 50px;")
-            button.style("border-style: solid;")
-            button.style("font-family: 'Pixelify Sans', sans-serif;")
-            button.style("position: absolute")
-            button.style("font-size: 175%")
-            button.style("transform: translate(-50%, -50%);")
-            button.style("border-color: black;")
-            button.style("background-color: #FF8700;")
-
-
-
-            function settings() {
-                console.log("works")
-                // if it is 0 then you are able to click but if not you remove the buttons
-                if (click == 0 ) {
-                    click += 1;
-                    
-                    // Back button
-                    let button1 = createButton('Back');
-                    button1.position(0,2350);
-                    button1.style("height: 8%")
-                    button1.style("width: 15%")
-                    button1.style("left: 50%")
-                    button1.style("border-radius: 50px;")
-                    button1.style("border-style: solid;")
-                    button1.style("font-family: 'Pixelify Sans', sans-serif;")
-                    button1.style("font-size: 250%")
-                    button1.style("transform: translate(-50%, -50%);")
-                    button1.style("border-color: black;")
-                    button1.style("background-color: #FF8700;")
-
-                    // recall function when back button clicked
-                    button1.mouseClicked(back1);
-
-                    function back1() {
-                        click = 0;
-                        button1.remove();
-                        button2.remove();
-                        button3.remove();
-                    }
-
-                    // Main Page button
-                    let button2 = createButton('Main Page');
-                    button2.position(0, 2430);
-                    button2.mouseClicked(mainPage);
-                    button2.style("height: 8%")
-                    button2.style("width: 15%")
-                    button2.style("left: 50%")
-                    button2.style("border-radius: 50px;")
-                    button2.style("border-style: solid;")
-                    button2.style("font-family: 'Pixelify Sans', sans-serif;")
-                    button2.style("font-size: 200%")
-                    button2.style("transform: translate(-50%, -50%);")
-                    button2.style("border-color: black;")
-                    button2.style("background-color: #FF8700;")
-                    
-
-                    function mainPage() {
-                        location.href="index.html"
-
-                        
-                    }
-
-
-                    let button3 = createButton('Play');
-                    button3.position(0, 2510);
-                    button3.mouseClicked(play);
-                    button3.style("height: 8%")
-                    button3.style("width: 15%")
-                    button3.style("left: 50%")
-                    button3.style("border-radius: 50px;")
-                    button3.style("border-style: solid;")
-                    button3.style("font-family: 'Pixelify Sans', sans-serif;")
-                    button3.style("font-size: 200%")
-                    button3.style("transform: translate(-50%, -50%);")
-                    button3.style("border-color: black;")
-                    button3.style("background-color: #FF8700;")
-
-                    function play() {
-                        location.href = "game.html"
-                    }
-                }
-            }
-
-
-    //
-
-
-           
-            // 
-
-            let next1 = createButton('Start');
-            next1.mouseClicked(nextbutton);
-            next1.position(1375, 2055)
-            next1.style("height: 5%")
-            next1.style("width: 10%")
-            next1.style("border-radius: 50px;")
-            next1.style("border-style: solid;")
-            next1.style("font-family: 'Pixelify Sans', sans-serif;")
-            next1.style("font-size: 175%")
-            next1.style("border-color: black;")
-            next1.style("background-color: #FF8700;")
-            next1.style("z-index: 4")
-            next1.style("position: absolue")
-            
-
-            function nextbutton() {
-                pressed += 1;
-                console.log(pressed)
-
-                if (pressed == 1) {
-                    let p1 = createP('HELP!!! You have arrived to Cosmic Conflict: Alien Seige and we need your help. In this game you are a pro space-pilot flying and destroying alien spaceships to save your home planet, Earth. ')
-                    p1.id('p1')
-                    p1.position(20, 1980)
-                    p1.style("font-family: 'Pixelify Sans', sans-serif;")
-                    p1.style("font-size: 25px;")
-                    next1.id('next1')
-                    document.getElementById('next1').innerHTML = 'Next'
-                }
-
-                if (pressed == 2) {
-                    document.getElementById('p1').innerHTML = 'Lets show you the controls to fly this spaceship. You can press the up arrow to fly high, down arrow to go down, left arrow to go backwards, right arrow to go forward, and space to shoot.'
-                }
-
-                if (pressed == 3) {
-                    document.getElementById('p1').innerHTML = 'There are some enemies in front of you! Practice the controls until you think you are ready and then you can press the settings button to exit to the main page or start playing the levels. Exiting the level will also looses progress on the level you are in. Hope you have fun!'
-                    next1.remove()
-                }
-            }
-        }
-
-
-
-
-
-
-
-        function draw() {
-            clear()
-
-            //moves the ship when key is pressed only moves when it is inside the perimeters(bx >= 0)...
-            // if (bx) {
-                if (keyIsDown(LEFT_ARROW)) {
-                    bx -= speed;
-                }
-            // }
-            // if (bx) {
-                if (keyIsDown(RIGHT_ARROW)) {
-                    bx += speed;
-                }
-            // }
-            // if (by) {
-                if (keyIsDown(UP_ARROW)) {
-                    by -= speed;
-                }
-            // }
-            // if (by) {
-                if (keyIsDown(DOWN_ARROW)) {
-                    by += speed;
-                }
-            // }
-
-            rect(image(ship, bx, by-500, 250, 150))
-            rect(image(enemy1, w/1.5, h/2, 200, 200))
-            rect(image(enemy1, w/1.5, h/2 - 150, 200, 200))
-            rect(image(enemy1, w/1.5, h/2 + 150, 200, 200))
-        }
+        //     // animate the scroll
+        //     window.scrollTo({
+        //         top: targetPosition,
+        //         behavior: 'smooth'
+        //     })
+        // }
 
 
     </script>
