@@ -58,6 +58,19 @@
         let speed = 5
         let pressed = 0;
 
+        let speedbullet = 20
+        let en1x = w - 200
+        let en1y = h/2
+
+        let en2x = w - 200
+        let en2y = h/2-150
+
+        let en3x = w - 200
+        let en3y = h/2+150
+
+        let en4x = w - 200
+        let en4y = h/2-290
+
 
 
 // 
@@ -109,7 +122,7 @@
                     button1.position(0,300);
                     button1.style("height: 8%")
                     button1.style("left: 50%")
-                    button1.style("top: 45%")
+                    button1.style("top: 55%")
                     button1.style("width: 15%")
                     button1.style("border-radius: 50px;")
                     button1.style("border-style: solid;")
@@ -135,7 +148,7 @@
                     button2.style("height: 8%")
                     button2.style("width: 15%")
                     button2.style("left: 50%")
-                    button2.style("top: 55%")
+                    button2.style("top: 45%")
                     button2.style("border-radius: 50px;")
                     button2.style("border-style: solid;")
                     button2.style("font-family: 'Pixelify Sans', sans-serif;")
@@ -208,6 +221,7 @@
                     cdiv.remove();
                     next1.remove();
                     p1.remove();
+                    bullet()
                 }
             }
         }
@@ -233,7 +247,7 @@
                 }
             }
             // moves the ship when key is pressed.
-            if (by >= -10) {
+            if (by >= +100) {
                 if (keyIsDown(UP_ARROW)) {
                     by -= speed;
                 }
@@ -244,12 +258,116 @@
                 }
             }
             
-            
+            let hit1 = collideRectRect(en1x, en1y, 250, 250, bx, by, 250, 150);
+            if (hit1 === true) {
+                en1x = w - 200
+                en2x = w - 200
+                en3x = w - 200
+                en4x = w - 200
+                window.alert('You died!')
+                location.href="game.html"
+            }
+            let hit2 = collideRectRect(en2x, en2y, 250, 250, bx, by, 250, 150);
+            if  (hit2 === true) {
+                en1x = w - 200
+                en2x = w - 200
+                en3x = w - 200
+                en4x = w - 200
+                window.alert('You died!')
+                location.href="game.html"
+            }
+            let hit3 = collideRectRect(en3x, en3y, 250, 250, bx, by, 250, 150);
+            if  (hit3 === true) {
+                en1x = w - 200
+                en2x = w - 200
+                en3x = w - 200
+                en4x = w - 200
+                window.alert('You died!')
+                location.href="game.html"
+            }
+            let hit4 = collideRectRect(en4x, en4y, 250, 250, bx, by, 250, 150);
+            if  (hit4 === true) {
+                en1x = w - 200
+                en2x = w - 200
+                en3x = w - 200
+                en4x = w - 200
+                window.alert('You died!')
+                location.href="game.html"
+            }
 
             rect(image(ship, bx, by, 250, 150))
-            rect(image(enemy1, w/1.5, h/2, 100, 100))
-            rect(image(enemy1, w/1.5, h/2-150, 100, 100))
+            rect(image(enemy1, en1x, en1y, 250, 250))
+            rect(image(enemy1, en2x, en2y, 250, 250))
+            rect(image(enemy1, en3x, en3y, 250, 250))
+            rect(image(enemy1, en4x, en4y, 250, 250))
         }
+
+
+
+        let random = Math.floor((Math.random() * 4) + 1)
+        console.log(random)
+        let amount = 0;
+        function bullet() {
+            if (random == 1) {
+                while (en1x > 0) {
+                    console.log('#1')
+                    en1x -= speedbullet;
+                    
+                    if (en1x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+
+            if (random == 2) {
+                while (en2x > 0) {
+                    console.log('#1')
+                    en2x -= speedbullet;
+                    
+                    if (en2x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+        
+
+            if (random == 3) {
+                while (en3x > 0) {
+                    console.log('#1')
+                    en3x -= speedbullet;
+                    
+                    if (en3x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+        
+
+            if (random == 4) {
+                while (en4x > 0) {
+                    console.log('#1')
+                    en4x -= speedbullet;
+                    
+                    if (en4x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+            
+            
+
+            amount++
+            
+            
+        }   
 
     </script>
 </body>
