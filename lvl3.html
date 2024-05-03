@@ -222,6 +222,7 @@
                     next1.remove();
                     p1.remove();
                     bullet()
+                    bullet1()
                 }
             }
         }
@@ -307,7 +308,7 @@
         let random = Math.floor((Math.random() * 4) + 1)
         console.log(random)
         let amount = 0;
-        function bullet() {
+        function bullet1() {
             if (random == 1) {
                 while (en1x > 0) {
                     console.log('#1')
@@ -361,13 +362,67 @@
                 }
             
             }
-            
-            
-
-            amount++
-            
-            
         }   
+
+
+
+        let random1 = Math.floor((Math.random() * 4) + 1)
+        console.log(random1)
+        function bullet() {
+            if (random1 == 1) {
+                while (en1x > 0) {
+                    console.log('#1')
+                    en1x -= speedbullet;
+                    
+                    if (en1x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+
+            if (random1 == 2) {
+                while (en2x > 0) {
+                    console.log('#1')
+                    en2x -= speedbullet;
+                    
+                    if (en2x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+        
+
+            if (random1 == 3) {
+                while (en3x > 0) {
+                    console.log('#1')
+                    en3x -= speedbullet;
+                    
+                    if (en3x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+        
+
+            if (random1 == 4) {
+                while (en4x > 0) {
+                    console.log('#1')
+                    en4x -= speedbullet;
+                    
+                    if (en4x < 0){
+                        break
+                    }
+
+                }
+            
+            }
+        }
 
     </script>
 </body>
