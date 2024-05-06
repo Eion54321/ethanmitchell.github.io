@@ -215,7 +215,7 @@
                 console.log(pressed)
 
                 if (pressed == 1) {
-                    let p1 = createP('HELP!!! You have arrived to Cosmic Conflict: Alien Seige and we need your help. In this game you are a pro space-pilot flying and destroying alien spaceships to save your home planet, Earth. ')
+                    let p1 = createP('HELP!!! You have arrived to Cosmic Conflict: Alien Seige and we need your help. In this game there are aliens that are trying to take over your homeworld but when you went off to do a mission you got hit and drifted into the emptiness of space. Your job is to survive, fly back to your homeworld, and dodge the alien attacks.')
                     p1.id('p1')
                     p1.position(20, -10)
                     p1.style("font-family: 'Pixelify Sans', sans-serif;")
@@ -229,51 +229,21 @@
                 }
 
                 if (pressed == 3) {
-                    document.getElementById('p1').innerHTML = 'There are some enemies in front of you! Practice the controls until you think you are ready and then you can press the settings button to exit to the main page or start playing the levels. This game is all about luck. You must  Exiting the level will also looses progress on the level you are in. Hope you have fun!'
-                    
+                    document.getElementById('p1').innerHTML = 'There are some enemies in front of you! Practice the controls until you think you are ready and then you can press the settings button to exit to the main page or start playing the levels. '
                 }
+
                 if (pressed == 4) {
-                    document.getElementById('p1').innerHTML = 'Before clicking End button on the text box move your character to the spot that you think will survive. You can choose any level you want on the menu page but it get harder the higher you go.'
+                    document.getElementById('p1').innerHtml = 'This game is all about luck. Exiting the level will also loose progress on the level you are in. You are able to play any level you want but the difficulty will go higher. Hope you have fun!'
+                 }
+                
+                if (pressed == 5) {
+                    document.getElementById('p1').innerHTML = 'As a reminder for the game: Once you press the End button the aliens will start trying to teleport on you to kill you. Please move your ship before you press the End button.'
                     next1.remove()
-                    bullet()
+                    bullet();
                 }
             }
 
         }
-
-        // function keyTypes() {
-        //     if (key == 'b') {
-        //         start = 1
-        //         console.log('works')
-        //     }
-        // }
-
-
-
-        // function fruitConstructor(part) {
-        //     this.drop = function(speedFactor) {
-        //         this.posistionX -= 1 * speedFactor
-        //     }
-        //     this.show = function() {
-        //         if (this.positionY ) {
-        //             image(fireball, this.positionX, this.positionY, 50, 50)
-        //         }
-        //     }
-
-        //     if (start == 1) {
-        //         this.positionY = random(0 + 200, Math.floow(w/2) - 200)
-        //         this.playerGoal = part
-        //     }
-
-        //     this.positionX = 0 - 0
-
-        //     this.detectHit = function (posistionX, positionY, sizeX, sizeY) {
-        //         if (collideRectRect(positionX, positionY, 50, 50, this.positionX, this.positionY, 50, 50))
-        //     }
-        // }
-
-
-
         function draw() {
             clear()
 
@@ -304,6 +274,7 @@
             // bullet();
             let hit1 = collideRectRect(en1x, en1y, 250, 250, bx, by, 250, 150);
             if (hit1 === true) {
+                backbullet();
                 en1x = w - 200
                 en2x = w - 200
                 en3x = w - 200
@@ -313,6 +284,7 @@
             }
             let hit2 = collideRectRect(en2x, en2y, 250, 250, bx, by, 250, 150);
             if  (hit2 === true) {
+                backbullet()
                 en1x = w - 200
                 en2x = w - 200
                 en3x = w - 200
@@ -323,6 +295,7 @@
             }
             let hit3 = collideRectRect(en3x, en3y, 250, 250, bx, by, 250, 150);
             if  (hit3 === true) {
+                backbullet();
                 en1x = w - 200
                 en2x = w - 200
                 en3x = w - 200
@@ -333,6 +306,7 @@
             }
             let hit4 = collideRectRect(en4x, en4y, 250, 250, bx, by, 250, 150);
             if  (hit3 === true) {
+                backbullet();
                 en1x = w - 200
                 en2x = w - 200
                 en3x = w - 200
@@ -364,12 +338,13 @@
             rect(image(enemy1, en3x, en3y, 250, 250))
             rect(image(enemy1, en4x, en4y, 250, 250))
         }
-
+        let work = 'false'
         let random = Math.floor((Math.random() * 4) + 1)
         console.log(random)
         let amount = 0;
         function bullet() {
             if (random == 1) {
+                let work = 'true';
                 while (en1x > 0) {
                     console.log('#1')
                     en1x -= speedbullet;
@@ -384,6 +359,7 @@
 
             if (random == 2) {
                 while (en2x > 0) {
+                    let work = 'true'
                     console.log('#1')
                     en2x -= speedbullet;
                     
@@ -398,6 +374,7 @@
 
             if (random == 3) {
                 while (en3x > 0) {
+                    let work = 'true'
                     console.log('#1')
                     en3x -= speedbullet;
                     
@@ -412,6 +389,7 @@
 
             if (random == 4) {
                 while (en4x > 0) {
+                    let work = 'true'
                     console.log('#1')
                     en4x -= speedbullet;
                     
@@ -428,8 +406,49 @@
             amount++
             
             
-        }  
+        }   
 
+
+
+        function backbullet() {
+            if (work == true) {
+                while (en1x <= 0) {
+                    console.log('#1')
+                    en1x += speedbullet;
+                    
+                    if (en1x > w - 200){
+                        break
+                    }
+                }
+
+                while (en2x <= 0) {
+                    console.log('#1')
+                    en2x += speedbullet;
+                    
+                    if (en2x > w - 200){
+                        break
+                    }
+                }
+
+                while (en3x <= 0) {
+                    console.log('#1')
+                    en3x += speedbullet;
+                    
+                    if (en3x > w - 200){
+                        break
+                    }
+                }
+
+                while (en4x <= 0) {
+                    console.log('#1')
+                    en4x += speedbullet;
+                    
+                    if (en4x > w - 200){
+                        break
+                    }
+                }
+            }
+        }
 
 
     </script>
