@@ -86,7 +86,7 @@
 
 
         .game {
-            top: 60%;
+            top: 63%;
             font-size: 40px;
             color: white;
             -webkit-text-stroke: 1.5px black;
@@ -99,11 +99,18 @@
         }
 
         .tutorial {
-            top: 60%;
+            top: 55%;
             font-size: 40px;
             color: white;
             -webkit-text-stroke: 1.5px black;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            width: 200px;
+            height: 50px;
+            border-radius: 50px;
+            border-style: solid;
         }
+
 
 
 
@@ -169,7 +176,8 @@
 <!-- HOME PAGE -->
     <div id="startscreen">
         <!-- button for tutorial -->
-        <a href="tutorial.html" ><button class="game" onclick="scrollToSection()">Start</button></a>
+        <a href="tutorial.html" ><button class="tutorial" onclick="scrollToSection()">Tutorial</button></a>
+        <a href="game.html"><button class="game" onclick="tutorial">Start</button></a>
 
     <!--Title  -->
         <div class="title1">
